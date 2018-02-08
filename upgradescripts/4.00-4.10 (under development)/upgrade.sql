@@ -231,7 +231,7 @@ set @resources='
     <Value>Check to disable the checkout process (a read-only mode where ordering is turned off temporarily).</Value>
   </LocaleResource>
   <LocaleResource Name="Checkout.Disabled">
-    <Value>Sorry, checkout process temporary disabled</Value>
+    <Value>Sorry, checkout process is temporary disabled</Value>
   </LocaleResource>    
 </Language>
 '

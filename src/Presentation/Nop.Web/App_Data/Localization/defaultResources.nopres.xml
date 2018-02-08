@@ -13675,7 +13675,7 @@
     <Value>Confirm your order</Value>
   </LocaleResource>
   <LocaleResource Name="Checkout.Disabled">
-    <Value>Sorry, checkout process temporary disabled</Value>
+    <Value>Sorry, checkout process is temporary disabled</Value>
   </LocaleResource>
   <LocaleResource Name="Checkout.EnterBillingAddress">
     <Value>Enter billing address</Value>

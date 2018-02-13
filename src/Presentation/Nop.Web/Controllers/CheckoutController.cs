@@ -148,7 +148,8 @@ namespace Nop.Web.Controllers
 
         public virtual IActionResult Index()
         {
-            if(_orderSettings.CheckoutDisabled)
+            //validation
+            if (_orderSettings.CheckoutDisabled)
                 return RedirectToRoute("ShoppingCart");
 
             var cart = _workContext.CurrentCustomer.ShoppingCartItems
@@ -292,6 +293,10 @@ namespace Nop.Web.Controllers
 
         public virtual IActionResult SelectBillingAddress(int addressId, bool shipToSameAddress = false)
         {
+            //validation
+            if (_orderSettings.CheckoutDisabled)
+                return RedirectToRoute("ShoppingCart");
+
             var address = _workContext.CurrentCustomer.Addresses.FirstOrDefault(a => a.Id == addressId);
             if (address == null)
                 return RedirectToRoute("CheckoutBillingAddress");
@@ -430,6 +435,10 @@ namespace Nop.Web.Controllers
 
         public virtual IActionResult SelectShippingAddress(int addressId)
         {
+            //validation
+            if (_orderSettings.CheckoutDisabled)
+                return RedirectToRoute("ShoppingCart");
+
             var address = _workContext.CurrentCustomer.Addresses.FirstOrDefault(a => a.Id == addressId);
             if (address == null)
                 return RedirectToRoute("CheckoutShippingAddress");

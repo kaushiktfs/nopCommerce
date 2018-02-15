@@ -539,6 +539,27 @@ set @resources='
   <LocaleResource Name="Admin.Customers.Customers.RewardPoints.Fields.Store.Hint">
     <Value>Choose a store. It''s useful only when you have "Points accumulated for all stores" setting disabled.</Value>
   </LocaleResource>
+  <LocaleResource Name="Admin.Customers.Customers.RewardPoints.Fields.Date">
+    <Value></Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.Customers.RewardPoints.Fields.CreatedDate">
+    <Value>Date</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Customers.Customers.RewardPoints.Fields.EndDate">
+    <Value>End date</Value>
+  </LocaleResource>
+  <LocaleResource Name="RewardPoints.Fields.Date">
+    <Value></Value>
+  </LocaleResource>
+  <LocaleResource Name="RewardPoints.Fields.CreatedDate">
+    <Value>Date</Value>
+  </LocaleResource>
+  <LocaleResource Name="RewardPoints.Fields.EndDate">
+    <Value>End date</Value>
+  </LocaleResource>
+  <LocaleResource Name="RewardPoints.Message.Expired">
+    <Value>Unused reward points from {0} have expired</Value>
+  </LocaleResource>
 </Language>
 '
 
@@ -1074,5 +1095,21 @@ IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [name] = N'commonsettings.sitemappa
 BEGIN
     INSERT [Setting] ([Name], [Value], [StoreId])
     VALUES (N'commonsettings.sitemappagesize', N'200', 0)
+END
+GO
+
+--new column
+IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE object_id = object_id('[RewardPointsHistory]') AND NAME = 'EndDateUtc')
+BEGIN
+	ALTER TABLE [RewardPointsHistory]
+	ADD [EndDateUtc] DATETIME NULL
+END
+GO
+
+--new column
+IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE object_id = object_id('[RewardPointsHistory]') AND NAME = 'ValidPoints')
+BEGIN
+	ALTER TABLE [RewardPointsHistory]
+	ADD [ValidPoints] INT NULL
 END
 GO

@@ -505,9 +505,9 @@ WHERE [Name] = N'commonsettings.usestoredprocedureforloadingcategories'
 GO
 
 --new setting
-IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [name] = N'storeinformationsettings.checkoutdisabled')
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [name] = N'ordersettings.checkoutdisabled')
 BEGIN
     INSERT [Setting] ([Name], [Value], [StoreId])
-    VALUES (N'storeinformationsettings.checkoutdisabled', N'false', 0)
+    VALUES (N'ordersettings.checkoutdisabled', N'false', 0)
 END
 GO
